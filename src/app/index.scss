@@ -1,0 +1,53 @@
+body{
+  margin-top:20px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#title{
+  font-family: 'Lobster', cursive;
+  text-align: right;
+}
+
+
+.eventTitleContainer{
+  position: relative;
+}
+.eventTitleContainer .event,
+.eventTitleContainer.firstEvent .event{
+  display: inline;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.39);
+  color: #FFFFFF;
+}
+
+.eventDate {
+  font-style: italic;
+}
+.events .eventDate{
+  text-align: right;
+  margin:0;
+  padding: 0 0 6px 0;
+  font-size:12px;
+}
+.events .eventTitle{
+  margin:0;
+  padding: 6px 0 0 0;
+  font-size:16px;
+}
+
+
+.firstEvent .eventDate{
+  margin-top: 20px;
+  text-align: right;
+}
+.firstEvent .eventTitle{
+  margin-top: 14px;
+}
+
+
+.pastEventsList{
+  margin-top:40px;
+}
+// injector
+// endinjector
