@@ -1,6 +1,8 @@
 body{
   margin-top:20px;
   font-family: 'Open Sans', sans-serif;
+  font-size:14px;
+  font-weight:300;
 }
 
 #title{
@@ -8,6 +10,9 @@ body{
   text-align: right;
 }
 
+.heading{
+  margin-bottom:60px;
+}
 
 .eventTitleContainer{
   position: relative;
@@ -85,6 +90,57 @@ body{
 
 .pastEventsList{
   margin-top:40px;
+}
+
+.singleEvent {
+  background-color: #F0F0F0;
+  padding: 15px 0;
+}
+
+.singleEventDetails{
+  font-size: 20px;
+  line-height: 36px;
+  aside{
+    margin-bottom:20px;
+    padding: 1px 10px 10px 10px;
+    background-color:#EFEFEF;
+    min-height:100px;
+
+    address{
+      text-align:center;
+    }
+  }
+  .dateList{
+    list-style:none;
+    font-size:16px;
+  }
+  .pricingList{
+    list-style:none;
+  }
+  .moreInfoBox {
+    background-color: #FCFCFC;
+    padding: 6px;
+    font-size:14px;
+    min-height:130px;
+    ul{
+      margin:0;
+      padding:0;
+      list-style:none;
+      li{
+        display:block;
+      }
+    }
+    .socialMedia{
+      li{
+        display:inline;
+      }
+    }
+    .forumLinks{
+      li {
+        display: block;
+      }
+    }
+  }
 }
 // injector
 // endinjector

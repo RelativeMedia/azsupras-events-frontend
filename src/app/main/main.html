@@ -1,14 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3"><img src="assets/images/logo.png" alt="AZSupras" /></div>
-    <div class="col-lg-9"><h1 id="title">{{ title }}</h1></div>
-  </div>
-  <div class="row">
     <div class="col-xs-12">
       <h2>Upcoming Events</h2>
     </div>
   </div>
-
   <section class="eventsList" ng-hide="!events">
     <div class="row">
       <div ng-class="{ 'col-xs-12 col-sm-12 col-md-4 col-lg-4 events':!$first,  'col-xs-12 firstEvent':$first }" ng-repeat="event in events" ng-mouseenter="hover(event)" ng-mouseleave="hover(event)">
@@ -34,8 +29,8 @@
               <span class="label label-default">42 People Going</span>
               <button class="btn btn-primary"><i class="fa fa-facebook-official fa-lg" data-toggle="tooltip" data-placement="top" title="Check Out the Facebook Event!"></i></button>
               <button class="btn btn-primary"><i class="fa fa-external-link-square fa-lg" data-toggle="tooltip" data-placement="top" title="Talk about it in the forums!"></i></button>
-              <button class="btn btn-primary">Read More...</button>
-              <button class="btn btn-success">Order Now</button>
+              <button class="btn btn-primary" ui-sref="event({ id: event.id })">Read More...</button>
+              <button class="btn btn-success" ui-sref="event.pay({ id: event.id })">Order Now</button>
             </div>
           </div>
           <div class="eventTitleImage" ng-switch="$first">

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('frontend')
-  .controller('MainCtrl', function ($scope, Event){
+  .controller('MainCtrl', function ($state, $scope, Event){
     var events = Event.query(function(){
-
+      console.log($state);
       $scope.hover = function(event){
         return event.showDetails = ! event.showDetails;
       };
