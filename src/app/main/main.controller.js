@@ -2,11 +2,30 @@
 
 angular.module('frontend')
   .controller('MainCtrl', function ($scope, Event){
-    var events = Event.get();
-    var firstEvent = events.splice(0,1);
+    var events = Event.query(function(){
 
-    $scope.firstEvent = firstEvent[0];
-    $scope.events = events;
+      $scope.hover = function(event){
+        return event.showDetails = ! event.showDetails;
+      };
 
-    $scope.title = 'Event Schedule';
+
+      $scope.parseDate = function(event){
+        var startDate = new Date(event.startDate);
+        var endDate   = new Date(event.endDate);
+
+        /**
+         * date is less than 24 hours, so combine the startDate and the hours
+         * from endDate.
+         */
+        if((endDate - startDate)/1000 <= 86400000){
+          var date = moment(startDate).format('MMM Do, YYYY hh:mm A') + ' - ' + moment(endDate).format('hh:mm A');
+        }
+        console.log(date);
+        return date;
+      };
+
+      $scope.events = events;
+      $scope.title = 'Event Schedule';
+    });
+
   });

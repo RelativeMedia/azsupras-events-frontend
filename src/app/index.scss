@@ -21,26 +21,63 @@ body{
   color: #FFFFFF;
 }
 
-.eventDate {
+.eventDates {
   font-style: italic;
-}
-.events .eventDate{
-  text-align: right;
+  list-style:none;
   margin:0;
-  padding: 0 0 6px 0;
-  font-size:12px;
+  padding: 10px 0 10px 0;
+  text-align:right;
+  li{
+    padding:0;
+  }
+  h4{
+    margin-top:0;
+    padding-top:0;
+    margin-bottom:0;
+    padding-bottom:0;
+  }
 }
+
 .events .eventTitle{
   margin:0;
-  padding: 6px 0 0 0;
+  padding: 10px 0 10px 0;
   font-size:16px;
 }
 
-
-.firstEvent .eventDate{
-  margin-top: 20px;
-  text-align: right;
+.eventDetails {
+  position: absolute;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.41);
+  bottom: 0;
+  width: 100%;
+  display: inline;
+  padding:10px 0;
+  color:#FFF;
 }
+
+.eventDetails .pricing{
+  text-align:left;
+  ul{
+    margin-left:0;
+    padding-left:0;
+    list-style:none;
+
+    li{
+      display: inline;
+      padding-right:20px;
+    }
+  }
+}
+
+
+.eventDetails .readMore{
+  text-align:right;
+}
+
+.firstEvent{
+  margin-bottom:40px;
+}
+
 .firstEvent .eventTitle{
   margin-top: 14px;
 }
