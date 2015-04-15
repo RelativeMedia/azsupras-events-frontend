@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Cost</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in cart">
+            <td>{{item.name}}</td>
+            <td>{{item.price | currency}}</td>
+            <td><button class="btn btn-danger"><i class="fa fa-trash"></i></td>
+          </tr>
+          <tr>
+            <td><strong>Total Cost</strong></td>
+            <td>{{ calculateTotal() | currency }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4">
+      <div>
+        <h1>Payment Details</h1>
+        <div class="row">
+          <div class="col-lg-12">
+            <form stripe-form="stripeCallback" role="form" id="ccForm" name="ccForm">
+              <div class="row">
+
+                <div class="form-group" ng-class="{ 'has-error': (ccForm.firstname.$invalid || ccForm.lastname.$invalid) && ccForm.email.$dirty }">
+                  <div class="col-lg-6">
+                    <label for="firstname">FIRST NAME</label>
+                    <input type="text" ng-model="checkout.firstname" name="firstname" id="firstname" placeholder="First Name" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="lastname">LAST NAME</label>
+                    <input type="text" ng-model="checkout.lastname" name="lastname" id="lastname" placeholder="Last Name" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.phonenumber.$invalid && ccForm.phonenumber.$dirty }">
+                    <label for="phonenumber">PHONE NUMBER</label>
+                    <input type="number" ng-model="checkout.phone" name="phonenumber" id="phonenumber" placeholder="Phone Number" class="form-control" required ng-minlength="10" ng-maxlength="10">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.emailaddress.$invalid && ccForm.emailaddress.$dirty }">
+                    <label for="emailaddress">EMAIL ADDRESS</label>
+                    <input type="email" ng-model="checkout.email" name="emailaddress" id="emailaddress" placeholder="your@email.com" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.username.$invalid && ccForm.username.$dirty }">
+                    <label for="username">FORUM USERNAME</label>
+                    <input type="text" ng-model="checkout.username" name="username" id="username" placeholder="YourUsername" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <hr>
+                <div class="col-xs-12">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.cardNumber.$invalid && ccForm.cardNumber.$dirty }">
+                    <label for="cardNumber">CARD NUMBER</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required  ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
+                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-7 col-md-7">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.expiry.$invalid && ccForm.expiry.$dirty }">
+                    <label for="expiry">EXPIRATION DATE</label>
+                    <input type="text" class="form-control" name="expiry" placeholder="MM/YY" required ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
+                  </div>
+                </div>
+                <div class="col-xs-5 col-md-5 pull-right">
+                  <div class="form-group" ng-class="{ 'has-error': ccForm.cvCode.$invalid && ccForm.cvCode.$dirty }">
+                    <label for="cvCode">CV CODE</label>
+                    <input type="password" class="form-control" name="cvCode" placeholder="CV" required ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">Pay Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

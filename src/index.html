@@ -32,7 +32,11 @@
       <div class="row heading">
         <div class="col-lg-3"><a ui-sref="home"><img src="assets/images/logo.png" alt="AZSupras" /></a></div>
         <div class="col-lg-9">
+          <div class="shoppingCart">
+            <a class="btn btn-primary" ui-sref="checkout"><i class="fa fa-lg fa-shopping-cart"></i> <span ng-if="cart.length"></span></a>
+          </div>
           <h1 id="title">{{pageHeading}}</h1>
+
         </div>
       </div>
     </div>
@@ -47,6 +51,10 @@
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+      Stripe.setPublishableKey('pk_test_BzODTyoTCgxiZi6q4c7edsBe');
     </script>
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

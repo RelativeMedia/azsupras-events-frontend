@@ -10,6 +10,16 @@ body{
   text-align: right;
 }
 
+
+.shoppingCart {
+  float: right;
+  top: -26px;
+  margin-top: 0;
+  position: absolute;
+  right: 0;
+  padding-top: 0;
+}
+
 .heading{
   margin-bottom:60px;
 }
@@ -25,6 +35,8 @@ body{
   background-color: rgba(0, 0, 0, 0.39);
   color: #FFFFFF;
 }
+
+
 
 .eventDates {
   font-style: italic;
@@ -142,5 +154,14 @@ body{
     }
   }
 }
+
+.qtyDropdown{
+  width: 80px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.pl-ziro { padding-left: 0px; }
+
 // injector
 // endinjector

@@ -21,7 +21,7 @@ var chalk = require('chalk');
 /*
  * Location of your backend server
  */
-var proxyTarget = 'http://server/context/';
+var proxyTarget = 'http://localhost:1337';
 
 var proxy = httpProxy.createProxyServer({
   target: proxyTarget
@@ -48,9 +48,27 @@ function proxyMiddleware(req, res, next) {
    * for your needs. If you can, you could also check on a context in the url which
    * may be more reliable but can't be generic.
    */
-  if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|woff2|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
+
+
+   /**
+    * make sure we are only grabbing static files for frontend
+    *
+    * should match anything with a .(ext) thats not prefixed with uploads.
+    * @type {RegExp}
+    */
+  var staticFiles = new RegExp(/^(?!.*(uploads)).*\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|woff2|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/);
+
+  /**
+   * make sure we aren't confusing the root / as a req that needs to be proxied
+   * @type {RegExp}
+   */
+  var rootFile = new RegExp(/^\/$/);
+
+  /** if the url is a static file, or root level / don't proxy the req. */
+  if ( staticFiles.test(req.url) || rootFile.test(req.url) ) {
     next();
-  } else {
+  /** otherwise proxy that sucker! */
+  }else{
     proxy.web(req, res);
   }
 }
@@ -61,7 +79,4 @@ function proxyMiddleware(req, res, next) {
  * The first line activate if and the second one ignored it
  */
 
-//module.exports = [proxyMiddleware];
-module.exports = function() {
-  return [];
-};
+module.exports = [proxyMiddleware];

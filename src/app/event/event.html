@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <img src="http://localhost:1337{{event.largeTitleImage}}" class="img-responsive"/>
+        <img src="{{event.largeTitleImage}}" class="img-responsive"/>
       </div>
     </div>
   </div>
@@ -52,7 +52,16 @@
         <aside>
           <h2>Pricing</h2>
           <ul class="pricingList" ng-hide="!event.prices.length">
-            <li ng-repeat="price in event.prices">{{price.name}} - ${{price.amount}} <button class="btn btn-success btn-sm">Order Now</button></li>
+            <li ng-repeat="price in event.prices">
+              <span ng-bind="price.name"></span>
+              <span ng-bind="price.amount | currency"></span>
+              <button class="btn btn-success btn-md" ng-click="addItem(event, price.name, price.amount)"><i class="fa fa-lg fa-cart-plus"></i>Add to Cart</button>
+            </li>
+            <li>
+              <span ng-bind="calculateTotal() | currency"></span>
+              <button class="btn btn-danger btn-md" ng-click="clearCart()">Clear Cart</button>
+              <a ui-sref="checkout" class="btn btn-primary btn-md">Checkout</a>
+            </li>
           </ul>
           <p ng-show="!event.prices.length">This event is totally free!</p>
         </aside>

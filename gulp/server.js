@@ -6,9 +6,9 @@ var browserSyncSpa = require('browser-sync-spa');
 
 var util = require('util');
 
-var middleware = require('./proxy');
 
 module.exports = function(options) {
+  var middleware = require('./proxy');
 
   function browserSyncInit(baseDir, browser) {
     browser = browser === undefined ? 'default' : browser;

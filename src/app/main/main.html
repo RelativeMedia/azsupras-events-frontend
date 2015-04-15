@@ -34,8 +34,8 @@
             </div>
           </div>
           <div class="eventTitleImage" ng-switch="$first">
-            <img src="http://localhost:1337{{ event.largeTitleImage }}" class="img-responsive"  ng-switch-when="true" />
-            <img src="http://localhost:1337{{ event.smallTitleImage }}" class="img-responsive"  ng-switch-default />
+            <img src="{{ event.largeTitleImage }}" class="img-responsive"  ng-switch-when="true" />
+            <img src="{{ event.smallTitleImage }}" class="img-responsive"  ng-switch-default />
           </div>
         </div>
       </div>
