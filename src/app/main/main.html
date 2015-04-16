@@ -26,11 +26,10 @@
               </ul>
             </div>
             <div class="col-lg-6 readMore">
-              <span class="label label-default">42 People Going</span>
               <a href="{{event.facebookEvent}}" target="_blank" class="btn btn-primary"><i class="fa fa-facebook-official fa-lg" data-toggle="tooltip" data-placement="top" title="Check Out the Facebook Event!"></i></a>
               <a href="{{event.forumLink}}" target="_blank" class="btn btn-primary"><i class="fa fa-external-link-square fa-lg" data-toggle="tooltip" data-placement="top" title="Talk about it in the forums!"></i></a>
               <button class="btn btn-primary" ui-sref="event({ id: event.id })">Read More...</button>
-              <button class="btn btn-success" ui-sref="event.pay({ id: event.id })">Order Now</button>
+              <button class="btn btn-success" ui-sref="event({ id: event.id })">Order Now</button>
             </div>
           </div>
           <div class="eventTitleImage" ng-switch="$first">
@@ -43,7 +42,7 @@
     <hr>
   </section>
 
-  <section class="pastEventsList">
+  <section class="pastEventsList" ng-show="pastEvents.length">
     <div class="row">
       <div class="col-xs-12">
         <h2>Past Events</h2>
