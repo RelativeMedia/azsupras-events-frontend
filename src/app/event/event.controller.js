@@ -14,10 +14,6 @@ angular.module('frontend')
       Cart.addItem(event, Item);
     };
 
-    $scope.clearCart = function(){
-      Cart.clear();
-    };
-
     $scope.dateDiff = function(start, end){
       end     = new Date(end);
       start   = new Date(start);

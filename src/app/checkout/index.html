@@ -22,7 +22,8 @@
           </tr>
           <tr>
             <td><strong>Total Cost</strong></td>
-            <td colspan="3">{{ calculateTotal() | currency }}</td>
+            <td colspan="2">{{ calculateTotal() | currency }}</td>
+            <td><button class="btn btn-danger btn-md" ng-click="clearCart()" ng-show="cart.length > 0">Clear Cart</button></td>
           </tr>
         </tbody>
       </table>
