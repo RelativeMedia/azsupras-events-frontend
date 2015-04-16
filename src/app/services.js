@@ -42,8 +42,22 @@ angular.module('frontend')
       }
       localStorageService.set('event.cart', $rootScope.cart);
     },
-    removeItem: function(){
-      // @TODO
+    findItem: function(Event, Item){
+
+    },
+    removeItem: function(Event, Item){
+
+      console.log($rootScope.cart);
+      angular.forEach($rootScope.cart, function(cartItem){
+        if(cartItem.id === Event.id){
+          angular.forEach(cartItem.items, function(item, key){
+            if(item.slug === Item.name.toLowerCase() ){
+              cartItem.items.splice(key, 1);
+            }
+          });
+        }
+      });
+      console.log($rootScope.cart);
     },
     updateQty: function(){
       // @TODO

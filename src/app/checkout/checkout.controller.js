@@ -6,6 +6,11 @@ angular.module('frontend')
     $rootScope.pageHeading = 'Checkout';
     $scope.checkout = {};
 
+
+    $scope.deleteItem = function(event, item){
+      Cart.removeItem(event, item);
+    };
+
     // Stripe Response Handler
     $scope.stripeCallback = function (code, result) {
         $scope.processing = true;

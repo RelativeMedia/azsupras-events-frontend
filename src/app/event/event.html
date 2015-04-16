@@ -38,7 +38,7 @@
       </div>
 
       <div class="col-lg-4">
-        <aside>
+        <aside class="when">
           <h2>When</h2>
           <ul class="dateList">
             <li><strong>Starts on</strong> {{event.startDate | date: 'medium'}}
@@ -46,7 +46,7 @@
             <li><strong>Event lasts {{ dateDiff(event.endDate, event.startDate)  }}</strong>
           </ul>
         </aside>
-        <aside>
+        <aside class="pricing">
           <h2>Pricing</h2>
           <ul class="pricingList" ng-hide="!event.prices.length">
             <li ng-repeat="price in event.prices">
@@ -54,8 +54,9 @@
               <span ng-bind="price.amount | currency"></span>
               <button class="btn btn-success btn-md" ng-click="addItem(event, price)"><i class="fa fa-lg fa-cart-plus"></i>Add to Cart</button>
             </li>
-            <li>
-              <span ng-bind="calculateTotal() | currency"></span>
+            <li class="seperator" ng-show="cart.length">
+              <strong>Total</strong> <span ng-bind="calculateTotal() | currency"></span>
+            </li>
               <button class="btn btn-danger btn-md" ng-click="clearCart()" ng-show="cart.length > 0">Clear Cart</button>
               <a ui-sref="checkout" class="btn btn-primary btn-md" ng-show="cart.length > 0">Checkout</a>
             </li>
