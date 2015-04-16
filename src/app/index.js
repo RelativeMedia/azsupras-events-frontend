@@ -23,22 +23,29 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
         templateUrl: 'app/checkout/index.html',
         controller: 'CheckoutCtrl'
       })
-      .state('checkout.success', {
+      .state('checkoutSuccess', {
         url: '/checkout/success',
         templateUrl: 'app/checkout/success.html',
-        controller: 'CheckoutCtrl'
+        controller: 'CheckoutSuccessCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
-  }).run(function($rootScope, localStorageService){
+  }).run(function($rootScope, localStorageService, Cart){
 
     $rootScope.calculateTotal = function(){
-      var total = 0.00;
-      angular.forEach($rootScope.cart, function(item){
-        total = parseFloat(total) + parseFloat(item.price);
-      });
-      return parseFloat(total).toFixed(2);
+      return Cart.calculateTotal();
     };
 
+    $rootScope.calculateCartCount = function(){
+      var itemCount = 0;
+      angular.forEach($rootScope.cart, function(item){
+        //each item in event
+        angular.forEach(item.items, function(item){
+          itemCount = itemCount + item.qty;
+        });
+      });
+      return itemCount;
+    };
     $rootScope.cart = localStorageService.get('event.cart') || [];
+    // $rootScope.cart = [];
   });

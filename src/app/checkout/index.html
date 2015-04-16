@@ -5,19 +5,25 @@
         <thead>
           <tr>
             <th>Item</th>
-            <th>Cost</th>
+            <th>Qty</th>
+            <th>Sub Total</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr ng-repeat="item in cart">
-            <td>{{item.name}}</td>
-            <td>{{item.price | currency}}</td>
+        <tbody ng-repeat="event in cart">
+          <tr>
+            <td colspan="4"><strong>{{event.name}}</strong></td>
+          </tr>
+          <tr class="event-item" ng-repeat="item in event.items">
+            <td>{{ item.name }}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ (item.cost * item.qty) | currency}}</td>
             <td><button class="btn btn-danger"><i class="fa fa-trash"></i></td>
           </tr>
           <tr>
             <td><strong>Total Cost</strong></td>
             <td>{{ calculateTotal() | currency }}</td>
+            <td></td>
             <td></td>
           </tr>
         </tbody>
@@ -70,7 +76,7 @@
               <div class="row">
                 <hr>
                 <div class="col-xs-12">
-                  <div class="form-group" ng-class="{ 'has-error': ccForm.cardNumber.$invalid && ccForm.cardNumber.$dirty }">
+                  <div class="form-group" ng-class="{ 'has-error': (ccForm.cardNumber.$invalid && ccForm.cardNumber.$dirty) || hasError }">
                     <label for="cardNumber">CARD NUMBER</label>
                     <div class="input-group">
                       <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required  ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
@@ -81,19 +87,25 @@
               </div>
               <div class="row">
                 <div class="col-xs-7 col-md-7">
-                  <div class="form-group" ng-class="{ 'has-error': ccForm.expiry.$invalid && ccForm.expiry.$dirty }">
+                  <div class="form-group" ng-class="{ 'has-error': (ccForm.expiry.$invalid && ccForm.expiry.$dirty) || hasError }">
                     <label for="expiry">EXPIRATION DATE</label>
                     <input type="text" class="form-control" name="expiry" placeholder="MM/YY" required ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
                   </div>
                 </div>
                 <div class="col-xs-5 col-md-5 pull-right">
-                  <div class="form-group" ng-class="{ 'has-error': ccForm.cvCode.$invalid && ccForm.cvCode.$dirty }">
+                  <div class="form-group" ng-class="{ 'has-error': (ccForm.cvCode.$invalid && ccForm.cvCode.$dirty) || hasError }">
                     <label for="cvCode">CV CODE</label>
                     <input type="password" class="form-control" name="cvCode" placeholder="CV" required ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" />
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-success">Pay Now</button>
+              <div class="row">
+                <div class="col-xs-3">
+                  <button type="submit" class="btn btn-success" ng-disabled="{{processing}}">Pay Now</button>
+                </div>
+                <div class="col-xs-9">
+                  <div class="alert alert-danger" role="alert" ng-show="message"><strong>Uhoh!</strong><br>{{message.message}}</div>
+                </div>
             </form>
           </div>
         </div>

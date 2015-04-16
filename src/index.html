@@ -32,8 +32,8 @@
       <div class="row heading">
         <div class="col-lg-3"><a ui-sref="home"><img src="assets/images/logo.png" alt="AZSupras" /></a></div>
         <div class="col-lg-9">
-          <div class="shoppingCart">
-            <a class="btn btn-primary" ui-sref="checkout"><i class="fa fa-lg fa-shopping-cart"></i> <span ng-if="cart.length"></span></a>
+          <div class="shoppingCart" ng-show="cart.length > 0">
+            <a class="btn btn-primary" ui-sref="checkout"><i class="fa fa-lg fa-shopping-cart"></i><span> {{ calculateCartCount() }} Item(s)</span></a>
           </div>
           <h1 id="title">{{pageHeading}}</h1>
 

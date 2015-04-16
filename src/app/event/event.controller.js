@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontend')
-  .controller('EventCtrl', function ($state, $rootScope, $scope, Event, localStorageService){
+  .controller('EventCtrl', function ($state, $rootScope, $scope, $filter, Event, Cart){
 
     Event.get({ id: $state.params.id }, function(event){
       $rootScope.pageTitle   = event.name;
@@ -9,17 +9,13 @@ angular.module('frontend')
       $scope.event = event;
     });
 
-    $scope.addItem = function(event, name, price){
-      $rootScope.cart.push({
-        name: event.name + ' - ' + name,
-        price: parseFloat(price).toFixed(2)
-      });
-      localStorageService.set('event.cart', $rootScope.cart);
+
+    $scope.addItem = function(event, Item){
+      Cart.addItem(event, Item);
     };
 
     $scope.clearCart = function(){
-      $rootScope.cart.length = 0;
-      localStorageService.remove('event.cart');
+      Cart.clear();
     };
 
     $scope.dateDiff = function(start, end){

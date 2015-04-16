@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('frontend')
-  .controller('CheckoutCtrl', function ($state, $rootScope, $scope, Checkout){
+  .controller('CheckoutCtrl', function ($state, $rootScope, $scope, Checkout, Cart){
     $rootScope.pageTitle   = 'Checkout';
     $rootScope.pageHeading = 'Checkout';
-
     $scope.checkout = {};
 
     // Stripe Response Handler
@@ -14,18 +13,22 @@ angular.module('frontend')
         if (result.error) {
             window.alert('it failed! error: ' + result.error.message);
         } else {
+
           Checkout.process({
-            amount: $rootScope.calculateTotal(),
+            amount: Cart.calculateTotal(),
             currency: 'usd',
-            cart: $rootScope.cart,
+            cart: Cart.items(),
             details: $scope.checkout,
             token: result.id
           }, function(err, result){
             if(err){
+              console.error(err);
               $scope.hasError = true;
+              $scope.processing = false;
               $scope.message = err;
             }else{
-              $state.go('checkout.success');
+              Cart.clear();
+              $state.go('checkoutSuccess');
               console.log(err, result);
             }
           });

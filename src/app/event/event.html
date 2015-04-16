@@ -18,9 +18,7 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="row">
-          <div class="col-lg-12">
-            {{event.content}}
-          </div>
+          <div class="col-lg-12" ng-bind-html="event.content"></div>
         </div>
         <hr>
         <div class="row">
@@ -28,12 +26,11 @@
             <h3>Get More Info</h3>
             <div class="moreInfoBox">
               <ul class="forumLinks">
-                <li><a href="https://azsupras.com">Checkout the Forums</a></li>
-                <li><a href="{{event.forumThread}}">Forum Event Thread</a></li>
+                <li><a href="https://azsupras.com" target="_blank">Checkout the Forums</a></li>
+                <li><a href="{{event.forumLink}}" target="_blank">Forum Event Thread</a></li>
               </ul>
               <ul class="socialMedia">
-                <li><i class="fa fa-facebook-official fa-3x"></i>
-                <li><i class="fa fa-twitter fa-3x"></i>
+                <li><a href="{{event.facebookEvent}}" target="_blank"><i class="fa fa-facebook-official fa-3x"></i></a>
               </ul>
             </div>
           </div>
@@ -55,12 +52,12 @@
             <li ng-repeat="price in event.prices">
               <span ng-bind="price.name"></span>
               <span ng-bind="price.amount | currency"></span>
-              <button class="btn btn-success btn-md" ng-click="addItem(event, price.name, price.amount)"><i class="fa fa-lg fa-cart-plus"></i>Add to Cart</button>
+              <button class="btn btn-success btn-md" ng-click="addItem(event, price)"><i class="fa fa-lg fa-cart-plus"></i>Add to Cart</button>
             </li>
             <li>
               <span ng-bind="calculateTotal() | currency"></span>
-              <button class="btn btn-danger btn-md" ng-click="clearCart()">Clear Cart</button>
-              <a ui-sref="checkout" class="btn btn-primary btn-md">Checkout</a>
+              <button class="btn btn-danger btn-md" ng-click="clearCart()" ng-show="cart.length > 0">Clear Cart</button>
+              <a ui-sref="checkout" class="btn btn-primary btn-md" ng-show="cart.length > 0">Checkout</a>
             </li>
           </ul>
           <p ng-show="!event.prices.length">This event is totally free!</p>
@@ -72,7 +69,7 @@
               {{event.location.address}}<br>
               {{event.location.city}}, {{event.location.state}} {{event.location.zipCode}}
             </address>
-            <img src="http://placehold.it/340x300" class="img-responsive"/>
+            <img src="{{event.staticMap}}" class="img-responsive"/>
         </aside>
       </div>
     </div>
