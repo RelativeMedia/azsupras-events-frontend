@@ -13,11 +13,22 @@ body{
 
 .shoppingCart {
   float: right;
-  top: -26px;
+  top: -2px;
   margin-top: 0;
   position: absolute;
   right: 0;
   padding-top: 0;
+}
+
+@media (min-width: 1199px){
+  .shoppingCart {
+    float: right;
+    top: -22px;
+    margin-top: 0;
+    position: relative;
+    right: 0;
+    padding-top: 0;
+  }
 }
 
 .heading{
@@ -128,6 +139,11 @@ body{
   }
   .pricingList{
     list-style:none;
+
+    .seperator{
+      border-top: 1px solid #D5D5D5;
+      margin-top: 10px;
+    }
   }
   .moreInfoBox {
     background-color: #FCFCFC;
@@ -160,6 +176,8 @@ body{
   display: inline-block;
   margin-right: 10px;
 }
+
+
 
 .pl-ziro { padding-left: 0px; }
 

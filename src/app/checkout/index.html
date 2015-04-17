@@ -16,15 +16,14 @@
           </tr>
           <tr class="event-item" ng-repeat="item in event.items">
             <td>{{ item.name }}</td>
-            <td>{{ item.qty }}</td>
+            <td><input type="number" min="0" max="9" ng-model="item.qty" required></td>
             <td>{{ (item.cost * item.qty) | currency}}</td>
-            <td><button class="btn btn-danger"><i class="fa fa-trash"></i></td>
+            <td><button class="btn btn-danger" ng-click="deleteItem(event, item)"><i class="fa fa-trash"></i></td>
           </tr>
           <tr>
             <td><strong>Total Cost</strong></td>
-            <td>{{ calculateTotal() | currency }}</td>
-            <td></td>
-            <td></td>
+            <td colspan="2">{{ calculateTotal() | currency }}</td>
+            <td><button class="btn btn-danger btn-md" ng-click="clearCart()" ng-show="cart.length > 0">Clear Cart</button></td>
           </tr>
         </tbody>
       </table>

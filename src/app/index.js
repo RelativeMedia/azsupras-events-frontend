@@ -35,6 +35,10 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
     $rootScope.calculateTotal = function(){
       return Cart.calculateTotal();
     };
+    
+    $rootScope.clearCart = function(){
+      Cart.clear();
+    };
 
     $rootScope.calculateCartCount = function(){
       var itemCount = 0;
