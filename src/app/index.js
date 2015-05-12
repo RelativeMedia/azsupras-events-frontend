@@ -34,7 +34,7 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
     $rootScope.title = 'AZSupras Events';
 
     $rootScope.api = {
-      endPoint: 'http://localhost:1337'
+      endPoint: 'http://localhost:1337/v1'
     };
 
     $rootScope.calculateTotal = function(){
