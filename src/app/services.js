@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('frontend')
-.factory('Event', function($resource){
-  return $resource('/api/event/:id', { id: '@_id'});
+.factory('Event', function($resource, $rootScope){
+  return $resource($rootScope.api.endPoint + '/event/:id', { id: '@_id'});
 })
 
 .service('Cart', ['$rootScope', 'localStorageService', '$filter', function($rootScope, localStorageService, $filter){
@@ -81,12 +81,12 @@ angular.module('frontend')
   };
 }])
 
-.factory('Checkout', function($http){
+.factory('Checkout', function($http, $rootScope){
 
   return {
     process: function(cart, cb){
       $http
-      .post('/api/checkout', cart)
+      .post($rootScope.api.endPoint + '/checkout', cart)
       .success(function(data, status, headers, config){
         cb(null, data);
       })
