@@ -34,7 +34,6 @@ angular.module('frontend')
             }else{
               Cart.clear();
               $state.go('checkoutSuccess');
-              console.log(err, result);
             }
           });
         }
