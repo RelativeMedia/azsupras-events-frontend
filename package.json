@@ -59,7 +59,7 @@
     "liveKey": "pk_live_DCUKCkEj7BIihDCl6b8dypKf"
   },
   "analytics": {
-    "url": "events.azsupras.com",
+    "url": "auto",
     "uid": "UA-12356400-5"
   }
 }
