@@ -24,6 +24,8 @@ module.exports = function(options) {
   });
 
   gulp.task('html', ['inject', 'partials'], function () {
+
+    console.log(options.package);
     var partialsInjectFile = gulp.src(options.tmp + '/partials/templateCacheHtml.js', { read: false });
     var partialsInjectOptions = {
       starttag: '<!-- inject:partials -->',
@@ -46,12 +48,15 @@ module.exports = function(options) {
       .pipe(jsFilter.restore())
       .pipe(cssFilter)
       .pipe($.replace('../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/', '../fonts/'))
+
       .pipe($.csso())
       .pipe(cssFilter.restore())
       .pipe(assets.restore())
       .pipe($.useref())
       .pipe($.revReplace())
       .pipe(htmlFilter)
+      .pipe($.replace(/(pk_test_[0-9a-zA-Z]{24})/g, options.package.stripe.liveKey))
+      .pipe($.ga({ url: options.package.analytics.url, uid: options.package.analytics.uid }))
       .pipe($.minifyHtml({
         empty: true,
         spare: true,
