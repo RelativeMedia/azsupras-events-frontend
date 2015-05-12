@@ -2,7 +2,7 @@
 <html ng-app="frontend">
   <head>
     <meta charset="utf-8">
-    <title ng-bind="title"></title>
+    <title ng-bind="'AZSupras Events | ' + pageTitle"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -37,8 +37,7 @@
           <a class="btn btn-primary" ui-sref="checkout"><i class="fa fa-lg fa-shopping-cart"></i><span ng=bind="calculateCartCount() + ' Item(s)'"></span></a>
         </div>
         <div class="col-lg-9">
-          <h1 id="title" ng-bind="pageHeading"></h1>
-
+          <h1 id="title" ng-bind="pageTitle"></h1>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@
 angular.module('frontend')
 .filter('getByProperty', function() {
   return function(propertyName, propertyValue, collection) {
-    console.log(propertyName, propertyValue, collection);
     var i=0, len=collection.length;
     for (; i<len; i++) {
       if (collection[i][propertyName] == +propertyValue) {

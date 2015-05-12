@@ -2,10 +2,8 @@
 
 angular.module('frontend')
   .controller('EventCtrl', function ($state, $rootScope, $scope, $filter, Event, Cart){
-
     Event.get({ id: $state.params.id }, function(event){
       $rootScope.pageTitle   = event.name;
-      $rootScope.pageHeading = event.name;
       $scope.event = event;
     });
 

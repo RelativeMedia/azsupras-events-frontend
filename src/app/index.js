@@ -6,10 +6,6 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
     $stateProvider
       .state('home', {
         url: '/',
-        data: {
-          pageTitle: 'Event Schedule',
-          pageHeading: 'Event Schedule'
-        },
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       })
@@ -30,11 +26,20 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
       });
 
     $urlRouterProvider.otherwise('/');
-  }).run(function($rootScope, localStorageService, Cart){
-    $rootScope.title = 'AZSupras Events';
+  }).run(function($rootScope, $state, $stateParams, localStorageService, Cart){
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      if(toState.title){
+        $rootScope.pageTitle = toState.title;
+      }
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams){
+      $rootScope.pageTitle = 'Event Schedule';
+    });
 
     $rootScope.api = {
-      endPoint: 'https://api.azsupras.com/v1'
+      endPoint: 'http://localhost:1337/v1'
     };
 
     $rootScope.calculateTotal = function(){

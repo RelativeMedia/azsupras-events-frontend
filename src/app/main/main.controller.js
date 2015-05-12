@@ -3,7 +3,6 @@
 angular.module('frontend')
   .controller('MainCtrl', function ($state, $scope, Event){
     var events = Event.query(function(){
-      console.log($state);
       $scope.hover = function(event){
         return event.showDetails = ! event.showDetails;
       };
@@ -20,7 +19,6 @@ angular.module('frontend')
         if((endDate - startDate)/1000 <= 86400000){
           var date = moment(startDate).format('MMM Do, YYYY hh:mm A') + ' - ' + moment(endDate).format('hh:mm A');
         }
-        console.log(date);
         return date;
       };
 

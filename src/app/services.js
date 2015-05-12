@@ -47,7 +47,6 @@ angular.module('frontend')
     },
     removeItem: function(Event, Item){
 
-      console.log($rootScope.cart);
       angular.forEach($rootScope.cart, function(cartItem){
         if(cartItem.id === Event.id){
           angular.forEach(cartItem.items, function(item, key){
@@ -57,7 +56,6 @@ angular.module('frontend')
           });
         }
       });
-      console.log($rootScope.cart);
     },
     updateQty: function(){
       // @TODO
