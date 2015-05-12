@@ -29,7 +29,6 @@ angular.module('frontend')
           itemCount++;
         });
       });
-      console.log(itemCount);
       return itemCount;
     }
   };
