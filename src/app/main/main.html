@@ -19,23 +19,24 @@
             </div>
           </div>
           <div class="eventDetails" ng-show="event.showDetails">
-            <div class="col-lg-6 pricing">
-              <strong>Pricing</strong>
-              <ul>
-                <li ng-repeat="price in event.prices">{{price.name}} - ${{price.amount}}<li>
-              </ul>
+            <div class="col-lg-6">
+              <div class="pricing" ng-hide="!event.prices.length">
+                <strong>Pricing</strong>
+                <ul>
+                  <li ng-repeat="price in event.prices">{{price.name}} - ${{price.amount}}<li>
+                </ul>
+              </div>
             </div>
             <div class="col-lg-6 readMore">
               <span class="label label-default" ng-show="event.attendeeCount">{{event.attendeeCount}} People Going</span>
               <a href="{{event.facebookEvent}}" target="_blank" class="btn btn-primary"><i class="fa fa-facebook-official fa-lg" data-toggle="tooltip" data-placement="top" title="Check Out the Facebook Event!"></i></a>
               <a href="{{event.forumLink}}" target="_blank" class="btn btn-primary"><i class="fa fa-external-link-square fa-lg" data-toggle="tooltip" data-placement="top" title="Talk about it in the forums!"></i></a>
               <button class="btn btn-primary" ui-sref="event({ id: event.id })">Read More...</button>
-              <button class="btn btn-success" ui-sref="event({ id: event.id })">Order Now</button>
+              <button class="btn btn-success" ui-sref="event({ id: event.id })" ng-hide="!event.prices.length">Order Now</button>
             </div>
           </div>
-          <div class="eventTitleImage" ng-switch="$first">
-            <img src="{{ event.largeTitleImage }}" class="img-responsive"  ng-switch-when="true" />
-            <img src="{{ event.smallTitleImage }}" class="img-responsive"  ng-switch-default />
+          <div class="eventTitleImage">
+            <img ng-src="{{ event.titleImage.extra.Location }}" class="img-responsive"/>
           </div>
         </div>
       </div>

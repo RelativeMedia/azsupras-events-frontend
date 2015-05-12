@@ -31,11 +31,16 @@ angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
 
     $urlRouterProvider.otherwise('/');
   }).run(function($rootScope, localStorageService, Cart){
+    $rootScope.title = 'AZSupras Events';
+
+    $rootScope.api = {
+      endPoint: 'https://api.azsupras.com/v1'
+    };
 
     $rootScope.calculateTotal = function(){
       return Cart.calculateTotal();
     };
-    
+
     $rootScope.clearCart = function(){
       Cart.clear();
     };

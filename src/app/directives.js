@@ -9,9 +9,7 @@ angular.module('frontend')
         var listener = function(event, toState) {
 
           $timeout(function() {
-            $rootScope.title = (toState.data && toState.data.pageTitle)
-            ? ' | ' + toState.data.pageTitle
-            : '';
+            $rootScope.title = (toState.data && toState.data.pageTitle) ? $rootScope.title + ' | ' + toState.data.pageTitle : $rootScope.title;
           });
         };
 
@@ -31,7 +29,6 @@ angular.module('frontend')
           itemCount++;
         });
       });
-      console.log(itemCount);
       return itemCount;
     }
   };
