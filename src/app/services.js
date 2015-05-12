@@ -91,6 +91,7 @@ angular.module('frontend')
         cb(null, data);
       })
       .error(function(data, status, headers, config){
+        console.error('Uhoh looks like there was a server error!', data, status, headers);
         cb(data);
       });
     }
