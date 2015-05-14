@@ -1,6 +1,19 @@
 'use strict';
 
-angular.module('frontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'angularPayments', 'gavruk.card'])
+angular.module('frontend', [
+  'ngAnimate',
+  'ngCookies',
+  'ngTouch',
+  'ngSanitize',
+  'ngResource',
+  'ui.router',
+  'ui.bootstrap',
+  'LocalStorageModule',
+  'angularPayments',
+  'gavruk.card',
+  'angulartics',
+  'angulartics.google.analytics'
+])
   .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
